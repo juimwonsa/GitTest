@@ -1,2 +1,2 @@
-This is an GitTest
+This is a GitTest
 =============
