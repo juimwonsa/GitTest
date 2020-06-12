@@ -9,5 +9,9 @@ public class Bank {
 
 		ba.receive(10000);
 		ba.defray(20000);
+
+		ba.status();
+
 	}
+
 }
