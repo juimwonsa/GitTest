@@ -22,18 +22,27 @@ public class BankAccount {
 		this.money = money;
 	}
 
-	public void status() {
+	public void showStatus() {
 		System.out.println("계좌: " + bankNum + "  (예금주 : " + name + ")");
-		System.out.println("잔액: " + money);
+		System.out.println("잔액: " + formatter.format(money) + "원");
 	}
 
-	public void receive(int money) {
+	public void doReceive(int money) {
+		if(money < 0) {
+			System.out.println("양수를 입력하세요.");
+			return;
+		}
+		
 		this.money += money;
 		System.out.println(formatter.format(money) + "원 입금합니다.");
 		System.out.println("잔액: " + formatter.format(this.money) + "원");
 	}
 
-	public void defray(int money) {
+	public void doDefray(int money) {
+		if(money < 0) {
+			System.out.println("양수를 입력하세요.");
+			return;
+		}
 		
 		if(money > this.money) {
 			System.out.println("잔액이 부족합니다.");
