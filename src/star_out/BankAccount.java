@@ -1,5 +1,5 @@
 package star_out;
-
+import java.util.Scanner;
 import java.text.DecimalFormat;
 
 public class BankAccount {
@@ -8,6 +8,23 @@ public class BankAccount {
 	private int money;
 
 	DecimalFormat formatter = new DecimalFormat("###,###");
+	
+	private boolean isPositiveNumber(int money) {
+		if(money < 0) {
+			System.out.println("양수를 입력하세요.");
+			return false;
+		}
+		return true;
+	}	
+	
+	private boolean withDraw(int money, int thisMoney) {
+		if(money<thisMoney) {
+			System.out.println("잔액이 부족합니다.");
+			return false;
+		}
+		return true;
+	}
+	
 	
 	
 	public BankAccount() {
@@ -21,7 +38,15 @@ public class BankAccount {
 		this.name = name;
 		this.money = money;
 	}
+	
 
+
+		
+
+	
+	
+	
+	
 	public void showStatus() {
 		System.out.println("계좌: " + bankNum + "  (예금주 : " + name + ")");
 		System.out.println("잔액: " + formatter.format(money) + "원");
@@ -39,13 +64,12 @@ public class BankAccount {
 	}
 
 	public void doDefray(int money) {
-		if(money < 0) {
-			System.out.println("양수를 입력하세요.");
+		if(isPositiveNumber(money)==false) {
 			return;
 		}
 		
-		if(money > this.money) {
-			System.out.println("잔액이 부족합니다.");
+		if(withDraw(money,this.money)==false) {
+			return;
 		}
 		
 		else {
@@ -54,4 +78,10 @@ public class BankAccount {
 			System.out.println("잔액: " + formatter.format(this.money));
 		}
 	}
+	
+	public String accountName() {
+		return this.name;
+	}
+	
+	
 }
