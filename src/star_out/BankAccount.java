@@ -11,7 +11,7 @@ public class BankAccount {
 	
 	private boolean isPositiveNumber(int money) {
 		if(money < 0) {
-			System.out.println("양수를 입력하세요.");
+			System.out.printf(BankMSG.ERR_INPUTDUALNUMBER);
 			return false;
 		}
 		return true;
@@ -19,7 +19,7 @@ public class BankAccount {
 	
 	private boolean withDraw(int money) {
 		if(this.money<money) {
-			System.out.println("잔액이 부족합니다.");
+			System.out.printf(BankMSG.ERR_LESSDEPOSIT);
 			return false;
 		}
 		return true;
@@ -41,38 +41,38 @@ public class BankAccount {
 
 	//현재 계좌의 이름, 잔액 등 상태를 나타냄
 	public void showStatus() {
-		System.out.println("계좌: " + bankNum + "  (예금주 : " + name + ")");
-		System.out.println("잔액: " + formatter.format(money) + "원");
+		System.out.printf(BankMSG.MSG_ACCOUNTSTATUS,bankNum,name);
+		System.out.printf(BankMSG.MSG_MONEYSTATUS,formatter.format(money));
 	}
 
 	//입금
 	public void doReceive(int money) {
 		if(money < 0) {
-			System.out.println("양수를 입력하세요.");
+			System.out.printf(BankMSG.ERR_INPUTDUALNUMBER);
 			return;
 		}
 		
 		this.money += money;
-		System.out.println(formatter.format(money) + "원 입금합니다.");
-		System.out.println("잔액: " + formatter.format(this.money) + "원");
+		System.out.printf(BankMSG.MSG_RECEIVEMONEY, formatter.format(money));
+		System.out.printf(BankMSG.MSG_MONEYSTATUS, formatter.format(this.money));
 	}
 
 	//출금
 	public void doDefray(int money) {
 		if(isPositiveNumber(money)==false) {
-			System.out.println("양수를 입력하세요.");
+			System.out.printf(BankMSG.ERR_INPUTDUALNUMBER);
 			return;
 		}
 		
 		if(withDraw(money)==false) {
-			System.out.println("출금하려는 금액이 현재 잔액보다 많습니다.");
+			System.out.printf(BankMSG.ERR_OVERDEFRAY);
 			return;
 		}
 		
 		else {
 			this.money -= money;
-			System.out.println(formatter.format(money) + "원 출금합니다." + "원");
-			System.out.println("잔액: " + formatter.format(this.money));
+			System.out.printf(BankMSG.MSG_DEFRAYMONEY, formatter.format(money));
+			System.out.printf(BankMSG.MSG_MONEYSTATUS,formatter.format(this.money));
 		}
 	}
 	

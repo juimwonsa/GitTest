@@ -3,86 +3,103 @@ package star_out;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+class Init{
+	private Scanner sc = new Scanner(System.in);
+	private String[] name;
+	private String name1;
+	private BankAccount currAccount = null;
+	private ArrayList<BankAccount> accounts = new ArrayList<>();
+	
+	
+	
+	
+
+}
+
 public class BankAccountManager {	
 	private Scanner sc = new Scanner(System.in);
 	private String[] name;
 	private String name1;
-	ArrayList<BankAccount> accounts = new ArrayList<>();
+	private BankAccount currAccount = null;
+	private ArrayList<BankAccount> accounts = new ArrayList<>();
+
 	
 	public String choiceTask() {
-		//if(currAccount != null) {
-		//	System.out.printf(BankMSG.MSG_CURRACCOUNT,currAccount.accountName());
-		//}
+		if(currAccount != null) {
+			System.out.printf(BankMSG.MSG_CURRACCOUNT, currAccount.accountName());
+		}
 		System.out.printf(BankMSG.MSG_CHOICETASK);
 		return sc.nextLine();
 	}
 	
 	//개설
-	public ArrayList<BankAccount> mkDeposit(ArrayList<BankAccount> accounts) {
+	public void mkDeposit() {
 		System.out.printf(BankMSG.MSG_TYPEINFO);		
 		name = (sc.nextLine()).split(",");
 		if(name.length!=3) {
 			System.out.printf(BankMSG.ERR_WRONGINFO);
-			return null;
+			return;
 		}
 		else {
 			System.out.printf(BankMSG.MSG_MKACCOUNT);
 			accounts.add(new BankAccount(name[0], name[1], Integer.parseInt(name[2])));
-			return accounts;
 		}
 	}
 	
 	//검색
-	public BankAccount searchAccount(ArrayList<BankAccount> accounts) {
+	public void searchAccount() {
 		System.out.printf(BankMSG.MSG_INPUTNAME);
-		name1 = sc.next();
+		name1 = sc.nextLine();
 		for(int i = 0 ; i < accounts.size() ; i++) {
 			if(accounts.get(i).accountName().equals(name1)){
-				return accounts.get(i);				
+				currAccount = accounts.get(i);
+				return;
 			}
 			if(i+1 == accounts.size())
 				System.out.printf(BankMSG.ERR_CANTFINDNAME);
 		}
-		return null;
 	}
 	
 	//입금
-	public BankAccount receiveMoney(BankAccount currAccount) {
+	public void receiveMoney() {
 		if(currAccount == null) {
 			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
-			return null;
+			return;
 		}
 		
 		System.out.printf(BankMSG.MSG_RECEIVEDEPOSIT);
 		int money = sc.nextInt();
+		sc.nextLine();
+		
 		currAccount.doReceive(money);
-		return currAccount;
+		return;
 	}
 	
 	//출금
-	public BankAccount defrayMoney(BankAccount currAccount) {
+	public void defrayMoney() {
 		if(currAccount == null) {
 			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
-			return null;
+			return;
 		}
 		
 		System.out.printf(BankMSG.MSG_RECEIVEDEPOSIT);
 		int money = sc.nextInt();
+		sc.nextLine();
 		currAccount.doReceive(money);
-		return currAccount;
+		return;
 	}
 	
 	//삭제
-	public ArrayList<BankAccount> deleteAccount(BankAccount currAccount, ArrayList<BankAccount> accounts) {
+	public void deleteAccount() {
 		if(currAccount == null) {
 			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
-			return null;
+			return;
 		}
 		
 		accounts.remove(currAccount);
 		System.out.printf(BankMSG.MSG_DELETEACCOUNT);
 		currAccount = null;
-		return accounts;
+		return;
 	}
 	
 	public void tryAgain() {

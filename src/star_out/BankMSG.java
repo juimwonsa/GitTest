@@ -9,7 +9,13 @@ public class BankMSG {
 	public static String MSG_RECEIVEDEPOSIT 	= "입금하실 금액을 입력하세요.%n";
 	public static String MSG_DEFRAYDEPOSIT		= "출금하실 금액을 입력하세요.%n";
 	public static String MSG_DELETEACCOUNT 		= "현재 계좌를 삭제하겠습니다.%n";
+	public static String MSG_ACCOUNTSTATUS 		= "계좌: %s  (예금주 : %s )%n";
+	public static String MSG_MONEYSTATUS 		= "잔액: %s원%n";
+	public static String MSG_RECEIVEMONEY 		= "%s원 입금합니다.%n";
+	public static String MSG_DEFRAYMONEY 		= "%s원 출금합니다.%n";
+	public static String MSG_DEPOSIT	 		= "잔액: %s원%n";
 	
+	public static String ERR_OVERDEFRAY 		= "출금하려는 금액이 현재 잔액보다 많습니다.";
 	public static String ERR_WRONGINFO 			= "[E] 잘못된 정보를 입력하였습니다.%n";
 	public static String ERR_INPUTDUALNUMBER 	= "[E] 양수를 입력하세요.%n";
 	public static String ERR_LESSDEPOSIT 		= "[E] 잔액이 부족합니다.%n";
@@ -17,4 +23,3 @@ public class BankMSG {
 	public static String ERR_CHOICEACCOUNT 		= "[E] 계좌를 먼저 선택해주세요.%n";
 	public static String ERR_TRYAGAIN 			= "[E] 다시 입력해주세요.%n";
 }
-
