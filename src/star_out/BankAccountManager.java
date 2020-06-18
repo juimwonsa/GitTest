@@ -4,89 +4,88 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BankAccountManager {	
-	public static void main(String args[]){	
-		ArrayList<BankAccount> accounts = new ArrayList<>();
-		int money;
-		String choose;
-		String name;
-		String[] account;
-		BankAccount currAccount = null;
-			
-		while(true) {
-			Scanner sc = new Scanner(System.in);
-			if(currAccount != null) {
-				System.out.print("현재 계좌는 "+currAccount.accountName()+"님의 계좌입니다.\n");
-			}
-
-			System.out.println("업무를 선택해주세요.");
-			choose = sc.nextLine();
-			
-			switch(choiceNum.valueOf(choose)) {
-				// 계좌 개설
-				case 개설:
-					System.out.println("정보를 입력해주세요. (계좌번호,이름,잔액)");		
-					account = (sc.next()).split(",");
-					if(account.length!=3) System.out.println("잘못된 정보를 입력하였습니다.");
-					else {
-						System.out.println("계좌가 개설되었습니다.");
-						accounts.add(new BankAccount(account[0], account[1], Integer.parseInt(account[2])));
-					}
-					break;
-					
-				// 검색
-				case 검색:
-					System.out.println("이름을 입력하세요.");
-					name = sc.next();
-					for(int i = 0 ; i < accounts.size() ; i++) {
-						if(accounts.get(i).accountName().equals(name)){
-							currAccount = accounts.get(i);
-							break;
-						}
-						if(i+1 == accounts.size())
-							System.out.println("일치하는 이름이 없습니다.");
-					}
-					break;
-					
-				// 입금
-				case 입금:
-					if(currAccount == null) {
-						System.out.println("계좌를 먼저 선택해주세요.");
-						break;
-					}
-					
-					System.out.println("입금하실 금액을 입력하세요.");
-					money = sc.nextInt();
-					currAccount.doReceive(money);
-					break;
-					
-				// 출금
-				case 출금:
-					if(currAccount == null) {
-						System.out.println("계좌를 먼저 선택해주세요.");
-						break;
-					}
-					
-					System.out.println("출금하실 금액을 입력하세요.");
-					money = sc.nextInt();
-					currAccount.doDefray(money);
-					break;
-					
-				//삭제
-				case 삭제:
-					if(currAccount == null) {
-						System.out.println("계좌를 먼저 선택해주세요.");
-						break;
-					}
-					
-					accounts.remove(currAccount);
-					System.out.println("현재 계좌를 삭제하겠습니다.");
-					currAccount = null;
-					break;
-					
-				default:	
-					System.out.println("다시 입력하세요.");	
-					break;
-			}
+	private Scanner sc = new Scanner(System.in);
+	private String[] name;
+	private String name1;
+	ArrayList<BankAccount> accounts = new ArrayList<>();
+	
+	public String choiceTask() {
+		//if(currAccount != null) {
+		//	System.out.printf(BankMSG.MSG_CURRACCOUNT,currAccount.accountName());
+		//}
+		System.out.printf(BankMSG.MSG_CHOICETASK);
+		return sc.nextLine();
+	}
+	
+	//개설
+	public ArrayList<BankAccount> mkDeposit(ArrayList<BankAccount> accounts) {
+		System.out.printf(BankMSG.MSG_TYPEINFO);		
+		name = (sc.nextLine()).split(",");
+		if(name.length!=3) {
+			System.out.printf(BankMSG.ERR_WRONGINFO);
+			return null;
 		}
+		else {
+			System.out.printf(BankMSG.MSG_MKACCOUNT);
+			accounts.add(new BankAccount(name[0], name[1], Integer.parseInt(name[2])));
+			return accounts;
+		}
+	}
+	
+	//검색
+	public BankAccount searchAccount(ArrayList<BankAccount> accounts) {
+		System.out.printf(BankMSG.MSG_INPUTNAME);
+		name1 = sc.next();
+		for(int i = 0 ; i < accounts.size() ; i++) {
+			if(accounts.get(i).accountName().equals(name1)){
+				return accounts.get(i);				
+			}
+			if(i+1 == accounts.size())
+				System.out.printf(BankMSG.ERR_CANTFINDNAME);
+		}
+		return null;
+	}
+	
+	//입금
+	public BankAccount receiveMoney(BankAccount currAccount) {
+		if(currAccount == null) {
+			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
+			return null;
+		}
+		
+		System.out.printf(BankMSG.MSG_RECEIVEDEPOSIT);
+		int money = sc.nextInt();
+		currAccount.doReceive(money);
+		return currAccount;
+	}
+	
+	//출금
+	public BankAccount defrayMoney(BankAccount currAccount) {
+		if(currAccount == null) {
+			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
+			return null;
+		}
+		
+		System.out.printf(BankMSG.MSG_RECEIVEDEPOSIT);
+		int money = sc.nextInt();
+		currAccount.doReceive(money);
+		return currAccount;
+	}
+	
+	//삭제
+	public ArrayList<BankAccount> deleteAccount(BankAccount currAccount, ArrayList<BankAccount> accounts) {
+		if(currAccount == null) {
+			System.out.printf(BankMSG.ERR_CHOICEACCOUNT);
+			return null;
+		}
+		
+		accounts.remove(currAccount);
+		System.out.printf(BankMSG.MSG_DELETEACCOUNT);
+		currAccount = null;
+		return accounts;
+	}
+	
+	public void tryAgain() {
+		System.out.printf(BankMSG.ERR_TRYAGAIN);
 	}
 }

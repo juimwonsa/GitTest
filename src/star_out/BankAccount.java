@@ -25,13 +25,13 @@ public class BankAccount {
 		return true;
 	}
 	
-	
 	//계좌의 기본 생성자
 	public BankAccount() {
 		this.bankNum = "123-456789";
 		this.name = "홍길동";
 		this.money = 100000000;
 	}
+	
 	//계좌의 생성자
 	public BankAccount(String bankNum, String name, int money) {
 		this.bankNum = bankNum;
