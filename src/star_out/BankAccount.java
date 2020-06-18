@@ -1,29 +1,11 @@
 package star_out;
-import java.util.Scanner;
 import java.text.DecimalFormat;
 
 public class BankAccount {
 	private String bankNum;
 	private String name;
 	private int money;
-
-	DecimalFormat formatter = new DecimalFormat("###,###");
-	
-	private boolean isPositiveNumber(int money) {
-		if(money < 0) {
-			System.out.printf(BankMSG.ERR_INPUTDUALNUMBER);
-			return false;
-		}
-		return true;
-	}	
-	
-	private boolean withDraw(int money) {
-		if(this.money<money) {
-			System.out.printf(BankMSG.ERR_LESSDEPOSIT);
-			return false;
-		}
-		return true;
-	}
+	private DecimalFormat formatter = new DecimalFormat("###,###");
 	
 	//계좌의 기본 생성자
 	public BankAccount() {
@@ -72,7 +54,7 @@ public class BankAccount {
 		else {
 			this.money -= money;
 			System.out.printf(BankMSG.MSG_DEFRAYMONEY, formatter.format(money));
-			System.out.printf(BankMSG.MSG_MONEYSTATUS,formatter.format(this.money));
+			System.out.printf(BankMSG.MSG_MONEYSTATUS, formatter.format(this.money));
 		}
 	}
 	
@@ -81,5 +63,22 @@ public class BankAccount {
 		return this.name;
 	}
 	
+	//양수 판별
+	private boolean isPositiveNumber(int money) {
+		if(money < 0) {
+			System.out.printf(BankMSG.ERR_INPUTDUALNUMBER);
+			return false;
+		}
+		return true;
+	}	
+	
+	//현재 잔액이 출금액보다 큰지 판별
+	private boolean withDraw(int money) {
+		if(this.money<money) {
+			System.out.printf(BankMSG.ERR_LESSDEPOSIT);
+			return false;
+		}
+		return true;
+	}
 	
 }
