@@ -73,7 +73,14 @@ public class BankAccountManager {
 					
 				//삭제
 				case 삭제:
+					if(currAccount == null) {
+						System.out.println("계좌를 먼저 선택해주세요.");
+						break;
+					}
+					
+					accounts.remove(currAccount);
 					System.out.println("현재 계좌를 삭제하겠습니다.");
+					currAccount = null;
 					break;
 					
 				default:	
