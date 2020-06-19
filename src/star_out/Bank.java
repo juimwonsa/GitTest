@@ -5,7 +5,7 @@ public class Bank {
 		BankAccountManager bankAccountManager = new BankAccountManager();
 		
 		while(true) {
-			switch(choiceNum.valueOf(bankAccountManager.choiceTask())) {
+			switch(choiceTask.valueOf(bankAccountManager.choiceTask())) {
 				// 계좌 개설
 				case 개설:
 					bankAccountManager.mkDeposit();

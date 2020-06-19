@@ -62,7 +62,4 @@ public class BankAccount {
 	public String accountName() {
 		return this.name;
 	}
-	
-
-	
 }
