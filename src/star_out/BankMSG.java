@@ -15,7 +15,7 @@ public class BankMSG {
 	public static String MSG_DEFRAYMONEY 		= "%s원 출금합니다.%n";
 	public static String MSG_DEPOSIT	 		= "잔액: %s원%n";
 	
-	public static String ERR_OVERDEFRAY 		= "출금하려는 금액이 현재 잔액보다 많습니다.";
+	public static String ERR_OVERDEFRAY 		= "[E] 출금하려는 금액이 현재 잔액보다 많습니다.";
 	public static String ERR_WRONGINFO 			= "[E] 잘못된 정보를 입력하였습니다.%n";
 	public static String ERR_INPUTDUALNUMBER 	= "[E] 양수를 입력하세요.%n";
 	public static String ERR_LESSDEPOSIT 		= "[E] 잔액이 부족합니다.%n";
