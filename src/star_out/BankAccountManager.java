@@ -3,19 +3,6 @@ package star_out;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Init{
-	private Scanner sc = new Scanner(System.in);
-	private String[] name;
-	private String name1;
-	private BankAccount currAccount = null;
-	private ArrayList<BankAccount> accounts = new ArrayList<>();
-	
-	
-	
-	
-
-}
-
 public class BankAccountManager {	
 	private Scanner sc = new Scanner(System.in);
 	private String[] name;
