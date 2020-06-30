@@ -7,7 +7,7 @@ public class Skill {
 	private int skillID;
 
 	
-	Skill(String skillName, String skillType, int skillDamage, int skillID){
+	Skill(String skillName, String skillType, int skillDamage, int skillID) {
 		this.skillName = skillName;
 		this.skillType = skillType;
 		this.skillDamage = skillDamage;
