@@ -2,19 +2,19 @@ package game;
 
 public class Skill {
 	private String skillName;
-	private String skillType;
-	private int skillDamage;
 	private int skillID;
 
 	
-	Skill(String skillName, String skillType, int skillDamage, int skillID) {
-		this.skillName = skillName;
-		this.skillType = skillType;
-		this.skillDamage = skillDamage;
-		this.skillID = skillID;
+	public Skill(String skillName, int skillID) {
+		this.skillName	 	= skillName;
+		this.skillID 		= skillID;
 	}
 	
-	String getSkillName() {
+	public static Skill createSkill(String skillName, int skillID) {
+		return new Skill(skillName, skillID);
+	};
+	
+	public String getSkillName() {
 		return this.skillName;
 	}
 }
