@@ -24,6 +24,10 @@ public class Character {
 		initSkills();
 	}
 	
+	public static Character createCharacter(String name, long guid) {	
+		return new Character(name, guid);
+	}
+	
 	private void initItems() {
 		createItem(ItemDef.AXE, 1);
 		createItem(ItemDef.HEALING_POTION, 3);
@@ -53,7 +57,7 @@ public class Character {
 				return true;
 			}
 		}
-		
+		System.out.printf(GameMSG.ERR_REMOVEITEM);
 		return false;
 	}
 	
@@ -65,6 +69,10 @@ public class Character {
 	public void getSkill(Skill skill) {
 		System.out.printf(GameMSG.MSG_GETSKILL, skill.getSkillName());
 		this.skills.add(skill);
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public void showItems() {

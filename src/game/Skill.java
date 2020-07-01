@@ -11,7 +11,7 @@ public class Skill {
 	
 	public static Skill createSkill(String skillName, int skillID) {
 		return new Skill(skillName, skillID);
-	};
+	}
 	
 	public String getSkillName() {
 		return this.skillName;
