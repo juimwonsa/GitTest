@@ -3,7 +3,6 @@ package game;
 public class Skill {
 	private String skillName;
 	private int skillID;
-
 	
 	public Skill(String skillName, int skillID) {
 		this.skillName	 	= skillName;

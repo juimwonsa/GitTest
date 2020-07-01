@@ -22,6 +22,6 @@ public class Item {
 	}
 	
 	public long getItemGUID() {
-		return.this.guid;
+		return this.guid;
 	}
 }

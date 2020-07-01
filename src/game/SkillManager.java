@@ -21,7 +21,6 @@ public class SkillManager {
 			Object skillName = this.skillMap.get(skillID);
 			if (skillName == null)
 				return null;
-			
 			return Skill.createSkill((String)skillName, skillID);
 		}
 }

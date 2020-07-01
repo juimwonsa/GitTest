@@ -16,8 +16,9 @@ public class Character {
 		this.level 			= 1;
 		this.items 			= new ArrayList<Item>();
 		this.skills 		= new ArrayList<Skill>();
-		this.guid 			= guid;
 		this.itemManager	= new ItemManager();
+		this.skillManager 	= new SkillManager();
+		this.guid 			= guid;
 		
 		initItems();
 		initSkills();
@@ -47,10 +48,12 @@ public class Character {
 	public boolean removeItem(long guid) {
 		for(Item items : this.items) {
 			if(items.getItemGUID()==guid) {
+				System.out.printf(GameMSG.MSG_REMOVEITEM,items.getItemName());
 				this.items.remove(this.items.indexOf(items));
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
